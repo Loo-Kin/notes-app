@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Notes from '@/views/notes.vue';
+import VNotes from '@/views/VNotes.vue';
 
 export const ROUTE_HOME_NAME = 'Home';
 
@@ -9,7 +9,7 @@ const router = createRouter({
         {
             name: ROUTE_HOME_NAME,
             path: '/home',
-            component: Notes,
+            component: VNotes,
         },
     ],
 });

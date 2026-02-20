@@ -1,0 +1,55 @@
+/* Переменные */
+:root {
+    --black: #1b1b1b;
+    --black-70: rgba(27, 27, 27, 0.7);
+    --white: #ffffff;
+    --bg: #f8f9fb;
+    --bg-card: #e1d9e8;
+    --brand: rgba(119, 51, 221, 0.9);
+    --brand-add: #ba9ae6;
+    --brand-light: rgba(178, 143, 227, 0.9);
+    --stroke-dark: rgba(178, 143, 227, 0.8);
+    --stroke-light: rgba(225, 217, 232, 0.3);
+
+    --fs-h1: 28px;
+    --fs-h2: 22px;
+    --fs-h3: 18px;
+    --fs-b1: 20px;
+    --fs-b2: 18px;
+    --fs-b3: 16px;
+    --fs-b4: 14px;
+
+    --lh-h1: 34px;
+    --lh-h2: 28px;
+    --lh-h3: 22px;
+    --lh-b1: 28px;
+    --lh-b2: 22px;
+    --lh-b3: 22px;
+    --lh-b4: 18px;
+
+    --shadow-btn:
+        0 4px 6px 2px rgba(0, 0, 0, 0.14), 0 2px 3.7px 0 rgba(0, 0, 0, 0.34);
+    --shadow-card:
+        0 4px 8px 3px rgba(178, 143, 227, 0.14),
+        0 1px 3px 0 rgba(178, 143, 227, 0.3);
+}
+
+@media screen and (width <= 375) {
+    :root {
+        --fs-h1: 22px;
+        --fs-h2: 18px;
+        --fs-h3: 16px;
+        --fs-b1: 18px;
+        --fs-b2: 16px;
+        --fs-b3: 14px;
+        --fs-b4: 12px;
+
+        --lh-h1: 28px;
+        --lh-h2: 22px;
+        --lh-h3: 22px;
+        --lh-b1: 22px;
+        --lh-b2: 22px;
+        --lh-b3: 18px;
+        --lh-b4: 16px;
+    }
+}
