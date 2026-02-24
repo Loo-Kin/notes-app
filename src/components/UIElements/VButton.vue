@@ -31,7 +31,7 @@ const handleClick = async function () {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .btn {
   position: relative;
   min-height: 44px;
@@ -82,31 +82,6 @@ const handleClick = async function () {
   @media screen and (width <= 375px) {
     padding: 6px 12px;
     min-width: 0;
-  }
-
-  &_archive {
-    white-space: nowrap;
-
-    & > * {
-      vertical-align: middle;
-    }
-
-    & > img {
-      display: none;
-      width: 24px;
-      height: 24px;
-    };
-
-    @media screen and (width <= 375px) {
-      background-color: var(--stroke-light);
-      color: var(--black);
-      box-shadow: none;
-
-      & > img {
-        display: inline-block;
-        margin-right: 6px;
-      }
-    }
   }
 }
 

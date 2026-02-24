@@ -45,4 +45,31 @@
       }
     }
   }
+
+  .btn {
+    &_archive {
+      white-space: nowrap;
+
+      & > * {
+        vertical-align: middle;
+      }
+
+      & > img {
+        display: none;
+        width: 24px;
+        height: 24px;
+      };
+
+      @media screen and (width <= 375px) {
+        background-color: var(--stroke-light);
+        color: var(--black);
+        box-shadow: none;
+
+        & > img {
+          display: inline-block;
+          margin-right: 6px;
+        }
+      }
+    }
+  }
 </style>
