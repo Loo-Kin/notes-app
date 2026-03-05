@@ -1,0 +1,30 @@
+.loading-spinner {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-b3);
+  line-height: var(--lh-b3);
+  color: var(--black-70);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: dotted 8px var(--brand);
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+input {
+  display: none;
+}
+
+label {
+  padding: 4px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(178, 143, 227, 0.30);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.filepicker {
+  &__files {
+    font-size: var(--fs-b2);
+    line-height: var(--lh-b2);
+  }
+
+  &__file {
+    display: flex;
+    gap: 12px;
+  }
+}

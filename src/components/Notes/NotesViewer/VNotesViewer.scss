@@ -1,0 +1,55 @@
+.notes-viewer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    display: grid;
+    gap: 20px;
+    overflow-y: auto;
+    padding-bottom: 120px;
+
+    &_square {
+      grid-template-columns: repeat(3, 1fr);
+
+      .notes-viewer {
+        &__preloader {
+          grid-column: 1 / 4;
+        }
+      }
+    }
+
+    &_list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__preloader {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// Vue Transitions
+.spinner-enter-active,
+.spinner-leave-active {
+  transition: 0.3s ease;
+}
+
+.spinner-enter-from,
+.spinner-leave-to {
+  transform: scale(0);
+}
+
+// Vue Transitions
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.3s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}

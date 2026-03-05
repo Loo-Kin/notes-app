@@ -1,0 +1,26 @@
+.textarea {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 156px;
+  border: solid 1px var(--bg-card);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: var(--fs-b2);
+  line-height: var(--lh-b2);
+  outline: none;
+  transition: border-color 0.2s;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand) var(--bg-card);
+  transition: border-color 0.2s;
+
+  &:active,
+  &:focus {
+    border-color: var(--brand);
+  }
+
+  &::placeholder {
+    color: var(--black-70);
+  }
+}

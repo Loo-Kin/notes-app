@@ -1,0 +1,19 @@
+.textbox {
+  display: block;
+  width: 100%;
+  border: solid 1px var(--bg-card);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: var(--fs-b2);
+  line-height: var(--lh-b2);
+  outline: none;
+
+  &:active,
+  &:focus {
+    border-color: var(--brand);
+  }
+
+  &::placeholder {
+    color: var(--black-70);
+  }
+}
