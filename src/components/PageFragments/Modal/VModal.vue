@@ -1,7 +1,7 @@
 <template>
   <dialog class="modal" ref="dialog">
     <slot :close-modal="closeModal"></slot>
-    <v-button v-if="showCloseButton" class="btn btn_close" @click="closeModal">
+    <v-button v-if="showCloseButton" class="btn btn_close modal__close" @click="closeModal">
       <img src="@/assets/img/icon/cross.svg" alt="">
     </v-button>
   </dialog>
@@ -27,18 +27,4 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.modal {
-  padding: 60px 40px;
-  border: none;
-  border-radius: 16px;
-
-  &::backdrop {
-    background: rgba(0, 0, 0, 0.40);
-  }
-
-  &_medium {
-    width: 954px;
-  }
-}
-</style>
+<style lang="scss" scoped src="./VModal.scss" />

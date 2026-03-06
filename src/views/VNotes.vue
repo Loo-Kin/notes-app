@@ -19,7 +19,7 @@
 import { useRequest } from '@/composables/request';
 import { computed, inject, provide, reactive, ref, watch } from 'vue';
 
-import VModal from '@/components/PageFragments/VModal.vue';
+import VModal from '@/components/PageFragments/Modal/VModal.vue';
 import VNotesViewer from '@/components/Notes/NotesViewer/VNotesViewer.vue';
 import VEditNoteDialog from '@/components/Notes/EditNoteDialog/VEditNoteDialog.vue';
 import VButton from '@/components/UIElements/Button/VButton.vue';

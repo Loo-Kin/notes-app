@@ -1,23 +1,13 @@
 <template>
-  <div class="note-card">
+  <div :class="['note-card', getNoteClass]">
     <div v-if="note.image" class="note-card__picture">
-      <img :src="note.image" alt="">
-      <p class="note-card__picture__caption">
-        image1.png
-      </p>
+      <img :src="note.image" alt="" @click="displayPicture = note.image">
     </div>
     <hgroup class="note-card__header">
       <h2 class="note-card__num">#{{ note.id }}</h2>
       <h2 class="note-card__title">{{ note.title }}</h2>
     </hgroup>
-    <div class="note-card__buttons">
-      <v-button class="note-card__buttons__button card__buttons__button_fill-mobile">
-        <img src="@/assets/img/icon/note-edit.svg" alt="">
-      </v-button>
-      <v-button class="note-card__buttons__button">
-        <img src="@/assets/img/icon/note-delete.svg" alt="">
-      </v-button>
-    </div>
+    <v-note-controls :class="getNoteControlsClass"></v-note-controls>
     <div class="note-card__text">
       <p class="text text-b2">
         {{ note.text }}
@@ -26,16 +16,40 @@
     <div class="note-card__date">
       {{ dateFormatted }}
     </div>
+
+    <transition name="modal">
+      <v-modal v-if="displayPicture" class="modal_picture" v-slot="slotProps" :show-close-button="true" @close="displayPicture = null">
+        <v-picture-viewer-dialog :modal-props="slotProps" :picture="displayPicture"></v-picture-viewer-dialog>
+      </v-modal>
+    </transition>
   </div>
 </template>
 
 <script setup>
-import VButton from '@/components/UIElements/Button/VButton.vue';
-import { computed } from 'vue';
+import VNoteControls from '../NoteControls/VNoteControls.vue';
+import VModal from '@/components/PageFragments/Modal/VModal.vue';
+import VPictureViewerDialog from '../PictureViewerDialog/VPictureViewerDialog.vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
   note: { type: Object },
+  layout: { type: String, validator(value) {
+      return ['square', 'list'].includes(value)
+    }
+  }
 });
+
+const getNoteClass = computed(() => ({
+  "note-card_square": props.layout === "square",
+  "note-card_list": props.layout === "list",
+}));
+
+const getNoteControlsClass = computed(() => ({
+  "note-controls_vertical": props.layout === "square",
+  "note-controls_horizontal": props.layout === "list",
+}));
+
+const displayPicture = ref(null);
 
 const dateFormatted = computed(() => {
   const formatter = new Intl.DateTimeFormat("ru");

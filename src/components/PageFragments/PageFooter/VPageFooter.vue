@@ -27,23 +27,4 @@ request().then(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-  .footer {
-    border-top: 1px solid rgba(160, 207, 243, 0.70);
-    padding-top: 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-
-    &__user-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    @media screen and (width <= 375px) {
-      display: none;
-    }
-  }
-</style>
+<style lang="scss" scoped src="./VPageFooter.scss" />

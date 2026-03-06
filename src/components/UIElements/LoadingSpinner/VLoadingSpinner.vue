@@ -8,4 +8,4 @@
 
 </script>
 
-<style lang="scss" scoped src="./VLoadingSpinner.scss" />
+<style lang="scss" src="./VLoadingSpinner.scss" />

@@ -1,26 +1,26 @@
 /* Шрифты */
 @font-face {
-    font-family: "PT Root UI";
-    src: url(./../fonts/PT-Root-UI_Light.ttf);
-    font-weight: 100 300;
+  font-family: "PT Root UI";
+  src: url('@/assets/fonts/PT-Root-UI_Light.ttf');
+  font-weight: 100 300;
 }
 
 @font-face {
-    font-family: "PT Root UI";
-    src: url(./../fonts/PT-Root-UI_Regular.ttf);
-    font-weight: 400;
+  font-family: "PT Root UI";
+  src: url('@/assets/fonts/PT-Root-UI_Regular.ttf');
+  font-weight: 400;
 }
 
 @font-face {
-    font-family: "PT Root UI";
-    src: url(./../fonts/PT-Root-UI_Medium.ttf);
-    font-weight: 500;
+  font-family: "PT Root UI";
+  src: url('@/assets/fonts/PT-Root-UI_Medium.ttf');
+  font-weight: 500;
 }
 
 @font-face {
-    font-family: "PT Root UI";
-    src: url(./../fonts/PT-Root-UI_Bold.ttf);
-    font-weight: 600 900;
+  font-family: "PT Root UI";
+  src: url('@/assets/fonts/PT-Root-UI_Bold.ttf');
+  font-weight: 600 900;
 }
 
 @font-face {

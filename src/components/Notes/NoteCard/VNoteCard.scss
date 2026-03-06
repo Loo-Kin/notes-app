@@ -11,19 +11,13 @@
 
   & .note-card__picture {
     grid-row: 1 / 4;
+    cursor: pointer;
 
     &>img {
       width: 220px;
       height: 256px;
       object-fit: cover;
       border-radius: 4px;
-    }
-
-    & .note-card__picture__caption {
-      display: none;
-      font-size: var(--fs-b3);
-      line-height: var(--lh-b3);
-      color: var(--black-70, rgba(27, 27, 27, 0.7));
     }
   }
 
@@ -32,33 +26,15 @@
     padding-bottom: 16px;
     border-bottom: solid 1px var(--stroke-dark, rgba(178, 143, 227, 0.8));
     margin-bottom: 16px;
+    overflow-x: hidden;
   }
 
   & .note-card__num,
   & .note-card__title {
     font-size: var(--fs-h1);
     line-height: var(--lh-h1);
-  }
-
-  & .note-card__buttons {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    padding: 12px 8px;
-    display: flex;
-    gap: 8px;
-    background-color: var(--brand-add, #ba9ae6);
-    border-radius: 8px;
-
-    & .note-card__buttons__button {
-      position: relative;
-      width: 34px;
-      height: 34px;
-      background-color: transparent;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-    }
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   & .note-card__text {
@@ -81,14 +57,9 @@
     & .note-card__picture {
       grid-row: 4;
 
-      &>img {
+      & > img {
         width: 140px;
         height: 140px;
-      }
-
-      & .note-card__picture__caption {
-        display: block;
-        margin-top: 12px;
       }
     }
 
@@ -110,28 +81,6 @@
       position: absolute;
       top: 18px;
       right: 14px;
-    }
-
-    & .note-card__buttons {
-      position: relative;
-      grid-row: 5;
-      top: auto;
-      right: auto;
-      margin-top: 16px;
-      padding: 0;
-      flex-direction: row-reverse;
-      gap: 16px;
-      background-color: transparent;
-      border-radius: 0px;
-
-      & .note-card__buttons__button {
-        border: solid 1px var(--brand-add, #ba9ae6);
-        border-radius: 8px;
-
-        &.note-card__buttons__button_fill-mobile {
-          background-color: var(--brand-add, #ba9ae6);
-        }
-      }
     }
 
     & .note-card__text {
@@ -183,6 +132,7 @@
       }
 
       & .note-card__header {
+
       }
 
       & .note-card__text {
@@ -197,8 +147,32 @@
         text-align: left;
       }
 
-      & .note-card__buttons {
+      & .note-controls {
         right: 20px;
+      }
+    }
+
+    @media screen and (width > 375px) and (width <= 720px) {
+      & .note-card__header {
+        padding-right: 60px;
+      }
+
+      & .note-card__picture {
+        & > img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  &_list {
+    @media screen and (width > 375px) and (width <= 720px) {
+      & .note-card__picture {
+        &>img {
+          width: 55px;
+          height: 64px;
+        }
       }
     }
   }

@@ -1,0 +1,111 @@
+.note-controls {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  padding: 12px 8px;
+  background-color: var(--brand-add, #ba9ae6);
+  border-radius: 8px;
+  transition: background-color 0.3s, padding 0.3s;
+
+  & .note-controls__expander {
+    & > input {
+      display: none;
+    }
+
+    & > label {
+      display: block;
+      width: 35px;
+      height: 35px;
+      padding: 8px;
+      border: solid 1px var(--brand-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  }
+
+  & .note-controls__buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  & .note-controls__button {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  @media screen and (width > 375px) {
+    &_horizontal {
+      display: flex;
+      gap: 20px;
+
+      .note-controls__expander {
+        display: none;
+      }
+    }
+
+    &_vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      &:not(:has(.note-controls__expander > input[type="checkbox"]:checked)) {
+        padding: 0;
+        background: transparent;
+      }
+
+      .note-controls__expander {
+        & > input[type="checkbox"] {
+          &:checked + label {
+            border: none;
+            border-bottom: solid 1px var(--stroke-light, rgba(225, 217, 232, 0.30));
+            border-radius: 0;
+          }
+        }
+      }
+
+      .note-controls__buttons {
+        flex-direction: column;
+        display: none;
+
+        &_expanded {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  @media screen and (width <= 375px) {
+    position: relative;
+    grid-row: 5;
+    top: auto;
+    right: auto;
+    margin-top: 16px;
+    padding: 0;
+    flex-direction: row-reverse;
+    gap: 16px;
+    background-color: transparent;
+    border-radius: 0px;
+
+    & .note-controls__expander {
+      display: none;
+    }
+
+    & .note-controls__button {
+      border: solid 1px var(--brand-add, #ba9ae6);
+      border-radius: 8px;
+
+      &.note-controls__button_fill-mobile {
+        background-color: var(--brand-add, #ba9ae6);
+      }
+    }
+  }
+}

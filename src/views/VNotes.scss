@@ -2,30 +2,3 @@ main {
   position: relative;
   overflow-y: auto;
 }
-
-// Vue Transitions
-.modal-enter-active,
-.modal-leave-active {
-  transition: 0.3s ease;
-
-  &::backdrop {
-    transition: 0.3s ease;
-  }
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-
-  &::backdrop {
-    opacity: 0;
-  }
-
-  &:is(.modal-enter-from) {
-    transform: translateY(100%);
-  }
-
-  &:is(.modal-leave-to) {
-    transform: translateY(-100%);
-  }
-}

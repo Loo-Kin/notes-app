@@ -8,7 +8,7 @@
         <transition-group name="list">
           <v-note-card v-for="(note) in notes.notes" :key="note.id"
             :note="note"
-            :class="getNoteClass">
+            :layout="displayMode">
           </v-note-card>
         </transition-group>
       </template>
@@ -17,7 +17,7 @@
       </div>
       <div v-show="!isAllNotesDisplayed || isLoading" class="notes-viewer__preloader" ref="preloader">
         <transition name="spinner">
-          <v-loading-spinner v-if="isLoading"></v-loading-spinner>
+          <v-loading-spinner v-if="isLoading" key="spinner"></v-loading-spinner>
         </transition>
       </div>
     </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { computed, inject, onMounted, ref, useTemplateRef } from 'vue';
+import { inject, onMounted, ref, useTemplateRef } from 'vue';
 
 import VSwitchButtons from '@/components/UIElements/SwitchButtons/VSwitchButtons.vue';
 import VNoteCard from '../NoteCard/VNoteCard.vue';
@@ -38,11 +38,6 @@ const switchButtonVariants = [
   { name: 'square', icon: iconSquare },
   { name: 'list', icon: iconList },
 ];
-
-const getNoteClass = computed(() => ({
-  "note-card_square": displayMode.value === "square",
-  "note-card_list": displayMode.value === "list",
-}));
 
 const props = defineProps({
   notes: { type: Object },

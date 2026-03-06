@@ -1,0 +1,17 @@
+.picture-viewer {
+  position: relative;
+
+  &__loading {
+    position: absolute;
+    inset: 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  img {
+    position: relative;
+  }
+}

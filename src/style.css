@@ -5,6 +5,10 @@
 
 :root {
   background-color: var(--bg);
+
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
 }
 
 #app {

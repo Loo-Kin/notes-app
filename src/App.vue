@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import VPageHeader from './components/PageFragments/VPageHeader.vue';
-import VPageFooter from './components/PageFragments/VPageFooter.vue';
+import VPageHeader from './components/PageFragments/PageHeader/VPageHeader.vue';
+import VPageFooter from './components/PageFragments/PageFooter/VPageFooter.vue';
 import { provide, ref } from 'vue';
 
 const currentSearch = ref("");
