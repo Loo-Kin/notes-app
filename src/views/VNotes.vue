@@ -17,6 +17,7 @@
 
 <script setup>
 import { useRequest } from '@/composables/request';
+import { useDebounceFn } from '@/composables/debounce';
 import { computed, inject, provide, reactive, ref, watch } from 'vue';
 
 import VModal from '@/components/PageFragments/Modal/VModal.vue';
@@ -36,10 +37,16 @@ const query = reactive({
 })
 
 const { request, data, isLoading } = useRequest('http://127.0.0.1:5000/notes', null, "GET", query);
+const { debounce } = useDebounceFn();
 
-watch(searchString, () => {
+const resetLimitAndRefreshNotes = function () {
   limitNotes.value = 6;
   refreshNotes();
+}
+
+watch(searchString, () => {
+  const debouncedResetLimit = debounce(resetLimitAndRefreshNotes, 250);
+  debouncedResetLimit();
 });
 
 const openAddNoteDialog = function () {
@@ -63,7 +70,6 @@ const extendLimit = function () {
   if (isAllNotesDisplayed.value) {
     return;
   }
-  console.log('EXTEND LIMIT', data.value.total, limitNotes.value);
   limitNotes.value += 3;
   refreshNotes();
 }
