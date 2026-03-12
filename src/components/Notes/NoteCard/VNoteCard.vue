@@ -7,7 +7,9 @@
       <h2 class="note-card__num">#{{ note.id }}</h2>
       <h2 class="note-card__title">{{ note.title }}</h2>
     </hgroup>
-    <v-note-controls :class="getNoteControlsClass" @edit-note-click="openEditNoteDialog"></v-note-controls>
+    <v-note-controls :class="getNoteControlsClass" @edit-note-click="openEditNoteDialog"
+      @delete-note-click="openDeleteNoteDialog">
+    </v-note-controls>
     <div class="note-card__text">
       <p class="text text-b2">
         {{ note.text }}
@@ -18,15 +20,19 @@
     </div>
 
     <transition name="modal">
-      <v-modal v-if="displayPicture" class="modal_picture" v-slot="slotProps" :show-close-button="true" @close="displayPicture = null">
+      <v-modal v-if="displayPicture" class="modal_picture" v-slot="slotProps" :show-close-button="true"
+        @close="displayPicture = null">
         <v-picture-viewer-dialog :modal-props="slotProps" :picture="displayPicture"></v-picture-viewer-dialog>
       </v-modal>
-    </transition>
-
-    <transition name="modal">
-      <v-modal v-if="isEditNoteDialog" class="modal_medium" v-slot="slotProps" :show-close-button="false"
+      <v-modal v-else-if="isEditNoteDialog" class="modal_medium" v-slot="slotProps" :show-close-button="false"
         @close="closeEditNoteDialog">
-        <v-edit-note-dialog :modal-props="slotProps" @submit-note="emit('edit-note', note)" :note="note"></v-edit-note-dialog>
+        <v-edit-note-dialog :modal-props="slotProps" :note="note" @submit-note="emit('edit-note', note)">
+        </v-edit-note-dialog>
+      </v-modal>
+      <v-modal v-else-if="isDeleteNoteDialog" class="modal_prompt" v-slot="slotProps" :show-close-button="false"
+        @close="closeDeleteNoteDialog">
+        <v-delete-note-dialog :modal-props="slotProps" :note="note" @confirm-delete="emit('delete-note', note)">
+        </v-delete-note-dialog>
       </v-modal>
     </transition>
   </div>
@@ -37,17 +43,19 @@ import VNoteControls from '../NoteControls/VNoteControls.vue';
 import VModal from '@/components/PageFragments/Modal/VModal.vue';
 import VPictureViewerDialog from '../PictureViewerDialog/VPictureViewerDialog.vue';
 import VEditNoteDialog from '../EditNoteDialog/VEditNoteDialog.vue';
+import VDeleteNoteDialog from '../DeleteNoteDialog/VDeleteNoteDialog.vue';
 import { computed, ref } from 'vue';
 
 const props = defineProps({
   note: { type: Object },
-  layout: { type: String, validator(value) {
+  layout: {
+    type: String, validator(value) {
       return ['square', 'list'].includes(value)
     }
   }
 });
 
-const emit = defineEmits(["edit-note"]);
+const emit = defineEmits(["edit-note", "delete-note"]);
 
 const getNoteClass = computed(() => ({
   "note-card_square": props.layout === "square",
@@ -76,6 +84,16 @@ const openEditNoteDialog = () => {
 
 const closeEditNoteDialog = () => {
   isEditNoteDialog.value = false;
+}
+
+const isDeleteNoteDialog = ref(false);
+
+const openDeleteNoteDialog = () => {
+  isDeleteNoteDialog.value = true;
+}
+
+const closeDeleteNoteDialog = () => {
+  isDeleteNoteDialog.value = false;
 }
 </script>
 

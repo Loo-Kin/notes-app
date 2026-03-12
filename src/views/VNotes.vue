@@ -4,6 +4,7 @@
       :notes="notes"
       :is-loading="isLoading"
       @edit-note="refreshNotes"
+      @delete-note="refreshNotes"
       @reach-bottom="extendLimit">
     </v-notes-viewer>
 

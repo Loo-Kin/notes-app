@@ -18,6 +18,7 @@ const currentSearch = ref("");
 provide("currentSearch", currentSearch)
 
 const onSearchUpdate = function (newVal) {
+  console.log(newVal);
   currentSearch.value = newVal;
 }
 </script>

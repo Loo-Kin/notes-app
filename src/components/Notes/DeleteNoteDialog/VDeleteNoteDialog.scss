@@ -1,0 +1,20 @@
+.delete-note {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__text {
+    margin: 40px 0 20px;
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}

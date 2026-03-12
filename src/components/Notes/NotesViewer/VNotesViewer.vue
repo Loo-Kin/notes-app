@@ -6,10 +6,8 @@
     <div :class="['notes-viewer__main', `notes-viewer__main_${displayMode}`]" ref="scrollable">
       <template v-if="notes?.notes && notes.notes.length > 0">
         <transition-group name="list">
-          <v-note-card v-for="(note) in notes.notes" :key="note.id"
-            :note="note"
-            :layout="displayMode"
-            @edit-note="emit('edit-note', $event)">
+          <v-note-card v-for="(note) in notes.notes" :key="note.id" :note="note" :layout="displayMode"
+            @edit-note="emit('edit-note', $event)" @delete-note="emit('delete-note', $event)">
           </v-note-card>
         </transition-group>
       </template>
@@ -45,7 +43,7 @@ const props = defineProps({
   isLoading: { type: Boolean }
 });
 
-const emit = defineEmits(["reach-bottom", "edit-note"]);
+const emit = defineEmits(["reach-bottom", "edit-note", "delete-note"]);
 
 const scrollable = useTemplateRef("scrollable");
 const preloader = useTemplateRef("preloader");

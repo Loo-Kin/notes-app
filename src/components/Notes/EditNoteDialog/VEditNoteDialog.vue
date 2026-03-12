@@ -109,9 +109,8 @@ const submitNote = async function () {
     await request();
   } catch (error) {
     console.log('FAILED', error);
-    clearFormData(formData.value)
+    clearFormData(formData.value);
   }
-
 
   if (isLoaded.value) {
     props.modalProps.closeModal();
