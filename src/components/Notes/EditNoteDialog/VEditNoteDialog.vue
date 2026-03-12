@@ -2,7 +2,7 @@
   <form class="dialog" action="http://127.0.0.1:5000/notes" method="post" enctype="multipart/form-data" id="edit-note">
     <div class="dialog__title">
       <h2>
-        Новая заметка
+        {{ note ? note.title : "Новая заметка" }}
       </h2>
       <v-button type="button" class="btn btn_close" :disabled="isLoading" @click="modalProps.closeModal">
         <img src="@/assets/img/icon/cross.svg" alt="">
@@ -11,7 +11,7 @@
     <div class="dialog__main">
       <v-textbox v-model="title" name="title" placeholder="Заголовок*" maxlength="10"></v-textbox>
       <v-textarea v-model="text" name="text" placeholder="Текст заметки" maxlength="1000"></v-textarea>
-      <v-button-file-picker v-model="image" name="image" accept="image/png, image/jpeg" :max-size="1024 * 1024">
+      <v-button-file-picker v-if="!isImageLoading" v-model="image" name="image" accept="image/png, image/jpeg" :max-size="1024 * 1024">
         <img src="@/assets/img/icon/add-img.svg" alt="">
         Прикрепить изображение
       </v-button-file-picker>
@@ -21,7 +21,7 @@
         Отменить
       </v-button>
       <v-button type="button" class="btn btn_large" :disabled="!isFormValid || isLoading" @click="submitNote">
-        {{ !isLoading ? "Сохранить" : "Сохранение..."}}
+        {{ !isLoading ? "Сохранить" : "Сохранение..." }}
       </v-button>
     </div>
   </form>
@@ -38,25 +38,61 @@ import VTextarea from '@/components/UIElements/Textarea/VTextarea.vue';
 import VButtonFilePicker from '@/components/UIElements/ButtonFilePicker/VButtonFilePicker.vue';
 
 function clearFormData(formData) {
-  for(let [name] of formData) {
+  for (let [name] of formData) {
     formData.delete(name);
   }
 }
 
 const props = defineProps({
-  modalProps: { type: Object }
+  modalProps: { type: Object },
+  note: { type: [Object, null], default: null }
 });
 
-const emit = defineEmits(["add-successful"]);
+const emit = defineEmits(["submit-note"]);
 
 const formData = ref(new FormData());
-const title = ref("");
-const text = ref("");
+const title = ref(props.note?.title ?? "");
+const text = ref(props.note?.text ?? "");
 const image = ref([]);
+const isImageLoading = ref(false);
 
-const { request, isLoading, isLoaded } = useRequest('http://127.0.0.1:5000/notes', null, "POST", "", formData.value);
+initImage().then(result => {
+  image.value = result;
+});
+
+const requestProperties = computed(() => {
+  if (!props.note) {
+    return ["http://127.0.0.1:5000/notes", null, "POST", "", formData.value];
+  } else {
+    return [`http://127.0.0.1:5000/notes/${props.note.id}`, null, "PATCH", "", formData.value];
+  }
+});
+
+const { request, isLoading, isLoaded } = useRequest(...requestProperties.value);
 
 const isFormValid = computed(() => title.value.length > 0 && text.value.length > 0 && image.value.length > 0);
+
+async function initImage() {
+  const result = [];
+
+  if (!props.note?.image) {
+    return result;
+  }
+
+  isImageLoading.value = true;
+
+  const pathSplit = props.note.image.split("/");
+  const fileName = pathSplit[pathSplit.length - 1];
+
+  const blob = await fetch(props.note.image);
+  const file = new File([blob], fileName);
+
+  result.push(file);
+
+  isImageLoading.value = false;
+
+  return result;
+}
 
 const submitNote = async function () {
   clearFormData(formData.value);
@@ -79,7 +115,7 @@ const submitNote = async function () {
 
   if (isLoaded.value) {
     props.modalProps.closeModal();
-    emit("add-successful");
+    emit("submit-note");
   }
 }
 </script>

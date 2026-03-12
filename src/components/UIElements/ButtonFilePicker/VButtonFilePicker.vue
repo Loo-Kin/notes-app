@@ -29,7 +29,6 @@ const id = useId();
 const model = defineModel();
 const inputElement = useTemplateRef('inputElement');
 
-// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   name: { type: String },
   accept: { type: String, default: "" },

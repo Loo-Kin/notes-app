@@ -1,6 +1,11 @@
 <template>
   <main class="v-notes">
-    <v-notes-viewer :notes="notes" :is-loading="isLoading" @reach-bottom="extendLimit"></v-notes-viewer>
+    <v-notes-viewer
+      :notes="notes"
+      :is-loading="isLoading"
+      @edit-note="refreshNotes"
+      @reach-bottom="extendLimit">
+    </v-notes-viewer>
 
     <v-button class="btn btn_addnote" @click="openAddNoteDialog">
       <img src="@/assets/img/icon/plus.svg" alt="">
@@ -9,7 +14,7 @@
     <transition name="modal">
       <v-modal v-if="isEditNoteDialog" class="modal_medium" v-slot="slotProps" :show-close-button="false"
         @close="closeAddNoteDialog">
-        <v-edit-note-dialog :modal-props="slotProps" @add-successful="refreshNotes"></v-edit-note-dialog>
+        <v-edit-note-dialog :modal-props="slotProps" @submit-note="refreshNotes"></v-edit-note-dialog>
       </v-modal>
     </transition>
   </main>

@@ -7,7 +7,7 @@
       <h2 class="note-card__num">#{{ note.id }}</h2>
       <h2 class="note-card__title">{{ note.title }}</h2>
     </hgroup>
-    <v-note-controls :class="getNoteControlsClass"></v-note-controls>
+    <v-note-controls :class="getNoteControlsClass" @edit-note-click="openEditNoteDialog"></v-note-controls>
     <div class="note-card__text">
       <p class="text text-b2">
         {{ note.text }}
@@ -22,6 +22,13 @@
         <v-picture-viewer-dialog :modal-props="slotProps" :picture="displayPicture"></v-picture-viewer-dialog>
       </v-modal>
     </transition>
+
+    <transition name="modal">
+      <v-modal v-if="isEditNoteDialog" class="modal_medium" v-slot="slotProps" :show-close-button="false"
+        @close="closeEditNoteDialog">
+        <v-edit-note-dialog :modal-props="slotProps" @submit-note="emit('edit-note', note)" :note="note"></v-edit-note-dialog>
+      </v-modal>
+    </transition>
   </div>
 </template>
 
@@ -29,6 +36,7 @@
 import VNoteControls from '../NoteControls/VNoteControls.vue';
 import VModal from '@/components/PageFragments/Modal/VModal.vue';
 import VPictureViewerDialog from '../PictureViewerDialog/VPictureViewerDialog.vue';
+import VEditNoteDialog from '../EditNoteDialog/VEditNoteDialog.vue';
 import { computed, ref } from 'vue';
 
 const props = defineProps({
@@ -38,6 +46,8 @@ const props = defineProps({
     }
   }
 });
+
+const emit = defineEmits(["edit-note"]);
 
 const getNoteClass = computed(() => ({
   "note-card_square": props.layout === "square",
@@ -57,6 +67,16 @@ const dateFormatted = computed(() => {
 
   return formatter.format(date);
 });
+
+const isEditNoteDialog = ref(false);
+
+const openEditNoteDialog = () => {
+  isEditNoteDialog.value = true;
+}
+
+const closeEditNoteDialog = () => {
+  isEditNoteDialog.value = false;
+}
 </script>
 
 <style lang="scss" src="./VNoteCard.scss" scoped />

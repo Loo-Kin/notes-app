@@ -8,7 +8,8 @@
         <transition-group name="list">
           <v-note-card v-for="(note) in notes.notes" :key="note.id"
             :note="note"
-            :layout="displayMode">
+            :layout="displayMode"
+            @edit-note="emit('edit-note', $event)">
           </v-note-card>
         </transition-group>
       </template>
@@ -44,7 +45,7 @@ const props = defineProps({
   isLoading: { type: Boolean }
 });
 
-const emit = defineEmits(["reach-bottom"]);
+const emit = defineEmits(["reach-bottom", "edit-note"]);
 
 const scrollable = useTemplateRef("scrollable");
 const preloader = useTemplateRef("preloader");

@@ -8,10 +8,10 @@
       </label>
     </div>
     <div :class="['note-controls__buttons', {'note-controls__buttons_expanded': isExpanded}]">
-      <v-button class="note-controls__button note-controls__button_fill-mobile">
+      <v-button class="note-controls__button note-controls__button_fill-mobile" @click="emit('edit-note-click')">
         <img src="@/assets/img/icon/note-edit.svg" alt="">
       </v-button>
-      <v-button class="note-controls__button">
+      <v-button class="note-controls__button" @click="emit('delete-note-click')">
         <img src="@/assets/img/icon/note-delete.svg" alt="">
       </v-button>
     </div>
@@ -26,13 +26,14 @@ const isExpanded = ref(false);
 const id = useId();
 const el = useTemplateRef("el");
 
+const emit = defineEmits(["edit-note-click", "delete-note-click"]);
+
 const onClickOutside = (clickEvt) => {
-  // console.log(clickEvt.target, el.value);
   let isInside = false;
 
   let elem = clickEvt.target;
 
-  while (elem !== document.documentElement) {
+  while (elem !== document.documentElement && elem !== null) {
     if (elem === el.value) {
       isInside = true;
       break;
