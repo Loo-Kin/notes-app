@@ -41,3 +41,14 @@ h3 {
     font-size: var(--fs-b4);
     line-height: var(--lh-b4);
 }
+
+.text-link {
+    color: var(--brand);
+    font-weight: bold;
+    transition: 0.3s;
+
+    &:visited,
+    &:hover {
+      color: var(--brand-add);
+    }
+}

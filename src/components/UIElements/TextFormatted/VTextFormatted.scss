@@ -1,0 +1,9 @@
+.text-formatted {
+  & > .text-b2:empty {
+    min-height: var(--lh-b2);
+  }
+
+  & pre {
+    display: inline;
+  }
+}

@@ -11,9 +11,7 @@
       @delete-note-click="openDeleteNoteDialog">
     </v-note-controls>
     <div class="note-card__text">
-      <p class="text text-b2">
-        {{ note.text }}
-      </p>
+      <v-text-formatted :text="note.text"></v-text-formatted>
     </div>
     <div class="note-card__date">
       {{ dateFormatted }}
@@ -44,6 +42,7 @@ import VModal from '@/components/PageFragments/Modal/VModal.vue';
 import VPictureViewerDialog from '../PictureViewerDialog/VPictureViewerDialog.vue';
 import VEditNoteDialog from '../EditNoteDialog/VEditNoteDialog.vue';
 import VDeleteNoteDialog from '../DeleteNoteDialog/VDeleteNoteDialog.vue';
+import VTextFormatted from '@/components/UIElements/TextFormatted/VTextFormatted.vue';
 import { computed, ref } from 'vue';
 
 const props = defineProps({

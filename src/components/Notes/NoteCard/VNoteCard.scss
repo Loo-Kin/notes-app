@@ -40,6 +40,8 @@
   & .note-card__text {
     margin-bottom: 20px;
     grid-column: 2;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
   }
 
   & .note-card__date {
