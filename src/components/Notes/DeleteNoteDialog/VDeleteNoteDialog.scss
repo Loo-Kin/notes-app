@@ -17,4 +17,23 @@
     justify-content: center;
     gap: 20px;
   }
+
+  @media screen and (width <= 375px) {
+    &__header {
+      gap: 12px;
+    }
+
+    &__text {
+      margin: 20px 0 16px;
+
+      & > .text {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+
+    &__buttons {
+      gap: 8px;
+    }
+  }
 }

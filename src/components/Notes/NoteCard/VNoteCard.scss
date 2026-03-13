@@ -101,7 +101,7 @@
       color: var(--black-70);
 
       &::before {
-        content: url(./img/icon-calendar.svg);
+        content: url('@/assets/img/icon/calendar.svg');
         width: 34px;
         height: 34px;
         flex-shrink: 0;

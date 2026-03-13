@@ -24,6 +24,10 @@ const closeModal = function () {
 
 onMounted(() => {
   dialogElement.value.showModal();
+  window.scrollTo({
+    top: 0,
+    instant: true
+  })
 });
 </script>
 
